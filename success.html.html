@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connected - ART WIFI</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background: radial-gradient(circle, #020617, #000);
+    color:white;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* MAIN BOX */
+.box {
+    padding:30px;
+    border-radius:20px;
+    border:2px solid #22c55e;
+    box-shadow:
+        0 0 10px #22c55e,
+        0 0 30px #22c55e,
+        0 0 60px #22c55e;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* LOGO */
+.logo {
+    width:120px;
+    margin-bottom:15px;
+    animation: float 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px #22c55e);
+}
+
+/* ANIMATIONS */
+@keyframes glow {
+    from { box-shadow: 0 0 10px #22c55e; }
+    to { box-shadow: 0 0 40px #22c55e; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* TEXT */
+h1 {
+    font-size:26px;
+    margin:10px 0;
+    text-shadow:0 0 10px #22c55e;
+}
+
+p {
+    font-size:15px;
+    opacity:0.9;
+}
+
+/* SPEED METER */
+.speed {
+    margin-top:15px;
+    font-size:18px;
+    color:#22c55e;
+    text-shadow:0 0 10px #22c55e;
+}
+
+/* LOADING BAR */
+.bar {
+    width:100%;
+    height:8px;
+    background:#111;
+    margin-top:20px;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress {
+    height:100%;
+    width:0%;
+    background:#22c55e;
+    animation: load 6s linear forwards;
+}
+
+@keyframes load {
+    from { width:0%; }
+    to { width:100%; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <!-- YOUR LOGO -->
+    <img src="ART WIFI HOTSPOT LOGO TRANSPARENT.png" class="logo">
+
+    <h1>✅ Connected!</h1>
+    <p>Thank you for choosing</p>
+    <p><strong>ART WIFI HOTSPOT</strong></p>
+
+    <p>💰 Enjoy your internet time!</p>
+
+    <!-- SPEED METER -->
+    <div class="speed" id="speed">Speed: 0 Mbps</div>
+
+    <!-- LOADING -->
+    <div class="bar">
+        <div class="progress"></div>
+    </div>
+
+    <p id="countdown">Redirecting in 6 seconds...</p>
+
+</div>
+
+<!-- SOUND (OPTIONAL) -->
+<audio id="sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+
+<script>
+// PLAY SOUND
+document.getElementById("sound").play().catch(()=>{});
+
+// SPEED ANIMATION
+let speed = 0;
+let speedInterval = setInterval(()=>{
+    speed += Math.floor(Math.random() * 10);
+    if(speed > 100) speed = 100;
+
+    document.getElementById("speed").innerHTML = "Speed: " + speed + " Mbps";
+},300);
+
+// COUNTDOWN + REDIRECT
+let seconds = 6;
+
+let countdown = setInterval(()=>{
+    seconds--;
+
+    document.getElementById("countdown").innerHTML =
+        "Redirecting in " + seconds + " seconds...";
+
+    if(seconds <= 0){
+        clearInterval(countdown);
+        clearInterval(speedInterval);
+
+        window.location.href = "https://google.com";
+    }
+
+},1000);
+</script>
+
+</body>
+</html>
