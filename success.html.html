@@ -22,11 +22,11 @@ body {
 .box {
     padding:30px;
     border-radius:20px;
-    border:2px solid #22c55e;
+    /* Changed to Blue */
+    border:2px solid #3b82f6;
     box-shadow:
-        0 0 10px #22c55e,
-        0 0 30px #22c55e,
-        0 0 60px #22c55e;
+        0 0 10px #3b82f6,
+        0 0 30px #3b82f6;
     animation: glow 1.5s infinite alternate;
 }
 
@@ -35,13 +35,14 @@ body {
     width:120px;
     margin-bottom:15px;
     animation: float 2s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px #22c55e);
+    /* Added blue drop shadow */
+    filter: drop-shadow(0 0 10px #3b82f6);
 }
 
 /* ANIMATIONS */
 @keyframes glow {
-    from { box-shadow: 0 0 10px #22c55e; }
-    to { box-shadow: 0 0 40px #22c55e; }
+    from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+    to { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
 }
 
 @keyframes float {
@@ -54,7 +55,8 @@ body {
 h1 {
     font-size:26px;
     margin:10px 0;
-    text-shadow:0 0 10px #22c55e;
+    /* Blue shadow for text */
+    text-shadow:0 0 10px #3b82f6;
 }
 
 p {
@@ -66,8 +68,9 @@ p {
 .speed {
     margin-top:15px;
     font-size:18px;
-    color:#22c55e;
-    text-shadow:0 0 10px #22c55e;
+    /* Changed to Blue */
+    color:#3b82f6;
+    text-shadow:0 0 10px #3b82f6;
 }
 
 /* LOADING BAR */
@@ -83,7 +86,8 @@ p {
 .progress {
     height:100%;
     width:0%;
-    background:#22c55e;
+    /* Progress bar changed to blue */
+    background:#3b82f6;
     animation: load 6s linear forwards;
 }
 
@@ -99,8 +103,7 @@ p {
 
 <div class="box">
 
-    <!-- YOUR LOGO -->
-    <img src="ART WIFI HOTSPOT LOGO TRANSPARENT.png" class="logo">
+    <img src="ART WIFI HOTSPOT LOGO TRANSPARENT.png.png" class="logo">
 
     <h1>✅ Connected!</h1>
     <p>Thank you for choosing</p>
@@ -108,10 +111,8 @@ p {
 
     <p>💰 Enjoy your internet time!</p>
 
-    <!-- SPEED METER -->
     <div class="speed" id="speed">Speed: 0 Mbps</div>
 
-    <!-- LOADING -->
     <div class="bar">
         <div class="progress"></div>
     </div>
@@ -120,7 +121,6 @@ p {
 
 </div>
 
-<!-- SOUND (OPTIONAL) -->
 <audio id="sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
 
 <script>
