@@ -1,158 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Connected - ART WIFI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART WIFI | Status Suite</title>
+    <style>
+        :root {
+            /* Ang iyong requested color */
+            --primary-blue: #3b82f6;
+            --blue-glow: 0 0 20px rgba(59, 130, 246, 0.5);
+            --bg-dark: #0f1216;
+            --card-bg: #1a1f26;
+            --text-main: #e0e0e0;
+        }
 
-<style>
-body {
-    margin:0;
-    font-family: Arial;
-    background: radial-gradient(circle, #020617, #000);
-    color:white;
-    text-align:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
 
-/* MAIN BOX */
-.box {
-    padding:30px;
-    border-radius:20px;
-    /* Changed to Blue */
-    border:2px solid #3b82f6;
-    box-shadow:
-        0 0 10px #3b82f6,
-        0 0 30px #3b82f6;
-    animation: glow 1.5s infinite alternate;
-}
+        /* Bouncing Animation for Logo */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-12px); }
+            60% { transform: translateY(-6px); }
+        }
 
-/* LOGO */
-.logo {
-    width:120px;
-    margin-bottom:15px;
-    animation: float 2s ease-in-out infinite;
-    /* Added blue drop shadow */
-    filter: drop-shadow(0 0 10px #3b82f6);
-}
+        .container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), var(--blue-glow);
+            width: 320px;
+            text-align: center;
+        }
 
-/* ANIMATIONS */
-@keyframes glow {
-    from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
-    to { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
-}
+        .logo-container {
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
+        .logo {
+            max-width: 135px;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+            animation: bounce 2s infinite;
+        }
 
-/* TEXT */
-h1 {
-    font-size:26px;
-    margin:10px 0;
-    /* Blue shadow for text */
-    text-shadow:0 0 10px #3b82f6;
-}
+        h2 {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 20px 0;
+            color: var(--primary-blue);
+            text-shadow: var(--blue-glow);
+        }
 
-p {
-    font-size:15px;
-    opacity:0.9;
-}
+        /* Pantay-pantay na Box System */
+        .info-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-sizing: border-box; /* Pinapanatili ang sukat kahit may padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Center content horizontally */
+            min-height: 85px; /* Fixed height para pantay lahat */
+            width: 100%; /* Pantay na width */
+        }
 
-/* SPEED METER */
-.speed {
-    margin-top:15px;
-    font-size:18px;
-    /* Changed to Blue */
-    color:#3b82f6;
-    text-shadow:0 0 10px #3b82f6;
-}
+        .label {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
 
-/* LOADING BAR */
-.bar {
-    width:100%;
-    height:8px;
-    background:#111;
-    margin-top:20px;
-    border-radius:10px;
-    overflow:hidden;
-}
+        .value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #fff;
+        }
 
-.progress {
-    height:100%;
-    width:0%;
-    /* Progress bar changed to blue */
-    background:#3b82f6;
-    animation: load 6s linear forwards;
-}
+        /* Action Buttons */
+        .btn {
+            width: 100%;
+            height: 48px; /* Fixed height para pantay sa boxes */
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
 
-@keyframes load {
-    from { width:0%; }
-    to { width:100%; }
-}
+        .btn-refresh {
+            background: transparent;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
 
-</style>
+        .btn-refresh:hover {
+            background: var(--primary-blue);
+            color: #000;
+            box-shadow: var(--blue-glow);
+        }
+
+        .btn-logout {
+            background: #ff3333;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+        }
+
+        .btn-logout:hover {
+            background: #ff5555;
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            font-size: 0.65rem;
+            color: #444;
+            margin-top: 25px;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="box">
-
-    <img src="ART WIFI HOTSPOT LOGO TRANSPARENT.png.png" class="logo">
-
-    <h1>✅ Connected!</h1>
-    <p>Thank you for choosing</p>
-    <p><strong>ART WIFI HOTSPOT</strong></p>
-
-    <p>💰 Enjoy your internet time!</p>
-
-    <div class="speed" id="speed">Speed: 0 Mbps</div>
-
-    <div class="bar">
-        <div class="progress"></div>
+<div class="container">
+    <div class="logo-container">
+        <img src="logo.png" alt="ART WIFI LOGO" class="logo">
     </div>
 
-    <p id="countdown">Redirecting in 6 seconds...</p>
+    <h2>System Status</h2>
 
+    <div class="info-box">
+        <span class="label">Time Remaining</span>
+        <span class="value" id="timeLeft">$(remaining_time)</span>
+    </div>
+
+    <div class="info-box">
+        <span class="label">Device MAC</span>
+        <span class="value" style="font-size: 0.9rem; color: #aaa;">$(client_mac)</span>
+    </div>
+
+    <button class="btn btn-refresh" onclick="location.reload()">Update Status</button>
+    
+    <a href="http://portal.tplink.net/logout" class="btn btn-logout">Terminate Session</a>
+
+    <div class="footer-note">
+        POWERED BY ART WIFI ADMIN SUITE v2.0
+    </div>
 </div>
 
-<audio id="sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
-
 <script>
-// PLAY SOUND
-document.getElementById("sound").play().catch(()=>{});
-
-// SPEED ANIMATION
-let speed = 0;
-let speedInterval = setInterval(()=>{
-    speed += Math.floor(Math.random() * 10);
-    if(speed > 100) speed = 100;
-
-    document.getElementById("speed").innerHTML = "Speed: " + speed + " Mbps";
-},300);
-
-// COUNTDOWN + REDIRECT
-let seconds = 6;
-
-let countdown = setInterval(()=>{
-    seconds--;
-
-    document.getElementById("countdown").innerHTML =
-        "Redirecting in " + seconds + " seconds...";
-
-    if(seconds <= 0){
-        clearInterval(countdown);
-        clearInterval(speedInterval);
-
-        window.location.href = "https://google.com";
+    // Dinagdagan ko ng logic para mag-pula ang oras pag malapit na maubos
+    const timeDisplay = document.getElementById('timeLeft');
+    const timeStr = timeDisplay.innerText;
+    
+    // Check kung less than 5 minutes na lang
+    if(timeStr.includes('00:00:') || timeStr.includes('00:01:') || timeStr.includes('00:04:')) {
+        timeDisplay.style.color = '#ff3333';
+        timeDisplay.style.textShadow = '0 0 10px rgba(255, 51, 51, 0.5)';
     }
-
-},1000);
 </script>
 
 </body>
